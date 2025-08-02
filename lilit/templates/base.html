@@ -1,0 +1,27 @@
+{% load main_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+<a href="{% url 'users:logout' %}">Logout</a>
+<p><a href="{%url 'create_post'%} ">Create post</a></p>
+{% else %}
+<a href="{% url 'users:login'%}?next={{request.path}}">Login</a>
+ /
+<a href="{% url 'users:registrate'%}?next={{request.path}}">Sing in</a>
+{% endif %}
+{% get_menu as menu %}
+{% for i in menu %}
+    <p>{{i.name}}</p>
+{% endfor %}
+<h1>{{title}}</h1>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
