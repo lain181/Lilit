@@ -1,12 +1,19 @@
 
 from django import template
 
+
+
+from main.models import Category
+
 register = template.Library()
 
-menu=[{"name": "About", "url":"about"},
+menu=[
     {"name": "Main", "url":"main"},
-    {"name": "Popular", "url":"popular"},
     ]
 @register.simple_tag
 def get_menu():
     return menu
+
+@register.simple_tag
+def get_categories():
+    return Category.objects.all()

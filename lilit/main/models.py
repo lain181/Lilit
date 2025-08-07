@@ -30,14 +30,27 @@ class Post(models.Model):
         return reverse('posts', kwargs={'slug': self.slug})
 class Category(models.Model):
     category_name=models.CharField(max_length=32)
+    slug=models.SlugField(max_length=32, blank=True)
+
+    def save(self, *args,**kwargs):
+        if not self.slug:
+            slug=slugify(self.category_name)
+            self.slug=slug
+        super().save(*args, **kwargs)
     def __str__(self):
         return self.category_name
+
+    def get_absolute_url(self):
+        return reverse('categories',kwargs={'slug':self.slug})
 
 
 class Comment(models.Model):
     comment_content=models.TextField(max_length=500)
-    comment_author = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
+    comment_author = models.ForeignKey(User,related_name='author', on_delete=models.CASCADE, default=2)
     comment_post = models.ForeignKey("Post", related_name="com_of_post", on_delete=models.CASCADE, null=True)
+    reply=models.ForeignKey('self', related_name='replies',on_delete=models.CASCADE, null=True,blank=True)
+    time_created=models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.comment_content

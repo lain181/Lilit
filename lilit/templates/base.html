@@ -15,10 +15,20 @@
  /
 <a href="{% url 'users:registrate'%}?next={{request.path}}">Sing in</a>
 {% endif %}
+
 {% get_menu as menu %}
 {% for i in menu %}
-    <p>{{i.name}}</p>
+    <p><a href="{% url i.url %}">{{i.name}}</a></p>
 {% endfor %}
+
+{% get_categories as cats %}
+<p>Categories</p>
+<ul>
+{% for i in cats %}
+    <li><a href="{{ i.get_absolute_url }}">{{i.category_name}}</a></li>
+
+{% endfor %}
+</ul>
 <h1>{{title}}</h1>
 {% block content %}
 
