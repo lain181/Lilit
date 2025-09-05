@@ -13,19 +13,8 @@
 <p >To make comments login</p>
 {% endif %}
 {% for i in com %}
-<p>{{i.comment_author}}----created at {{i.time_created}}</p>
-<h2>{{ i.comment_content}}</h2>
-{% if user.is_authenticated %}
-<h4><a href="{% url 'reply' i.pk %}?next={{request.path}}">reply</a></h4>
-{% endif %}
-<h4>replies</h4>
-<ul>
-    {% for l in i.replies.all %}
-        <li>author:{{l.comment_author}}-----{{ l.comment_content }}</li>
-    {% endfor %}
-</ul>
------------------------
--
--
+{% include 'main/comment.html' with i=i%}
+{% empty %}
+    <p>No comments</p>
 {% endfor %}
 {% endblock %}

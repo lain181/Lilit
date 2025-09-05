@@ -1,0 +1,11 @@
+
+<p>{{i.comment_author}}----created at {{i.time_created}}</p>
+<h3>{{ i.comment_content}}</h3>
+{% if user.is_authenticated %}
+<h4><a href="{% url 'reply' i.pk %}?next={{request.path}}">reply</a></h4>
+{% endif %}
+<ul>
+{% for i in i.replies.all %}
+{% include 'main/comment.html' with i=i%}
+{% endfor %}
+</ul>

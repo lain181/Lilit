@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -36,6 +37,10 @@ class CreatePost(CreateView):
           form.instance.author=self.request.user
           return super().form_valid(form)
 
+
+class ProfileView(DetailView):
+     model = User
+     template_name = 'main/profile.html'
 class ShowPost(View):
      def get(self, request, slug):
           post = get_object_or_404(Post, slug=slug)
