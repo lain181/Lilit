@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 {% for i in posts %}
----------------------------
-    <p>author:{{i.author.username}}</p>
-    <p><h2>{{i}}</h2></p>
-    <p><h3>{{i.text}}</h3></p>
-    <p><a href="{{i.get_absolute_url}}">More</a></p>
+    <a href="{{i.get_absolute_url}}" class="post-link">
+    <div id="post" >
+        <p>{{i.author.username}}</p>
+        <p><h3>{{i}}</h3></p>
+        <p>{{i.content|truncatechars:400}}</p>
+
+    </div>
+    </a>
+    <hr>
 {% endfor %}
 {% endblock %}

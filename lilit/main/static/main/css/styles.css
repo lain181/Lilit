@@ -1,0 +1,144 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F0FFFF;
+    padding: 15px 20px;
+    border-bottom: 1px solid #87CEEB;
+    padding: 20px;
+}
+
+#go-main {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;}
+
+#user {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+body {
+  font-family: 'Reddit Sans', Arial, sans-serif;
+}
+.sidebar {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 300px 1fr;
+    column-rule: 1px solid #ccc;
+}
+
+.sidebar-section {
+    background-color: #F0FFFF;
+    height:800px;
+    padding:20px;
+
+}
+.content {
+
+    width: 50%;
+    margin-right: 0 px;
+    margin-left:140px;
+
+}
+a {
+  text-decoration: none;
+  color: #004c5b;
+}
+
+a:visited {
+  color: #004c5b;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #004c5b;
+  background-color: #40E0D0;
+
+}
+
+a:active {
+  color: #004c5b; /* Сохраняет цвет при нажатии */
+}
+
+.post-link:hover #post {
+  background-color: #AFEEEE;
+  color: #111;
+}
+
+#post {
+    padding: 1px 20px 6px 20px;
+    border-radius: 15px;
+}
+.post-link{
+    border-radius: 0px;
+    padding:0px
+}
+a {
+  padding: 10px;
+  border-radius: 15px;
+}
+
+h1{
+ color:#002f39;
+}
+.dropdown-btn {
+  width: 90%;
+  background-color: #AFEEEE;
+  color: #004c5b;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.sidebar-section{
+ padding-left:19px;
+ padding-right:2px;
+ border-radius: 10px;
+}
+.dropdown-menu {
+  width: 90%;
+  display: block; /* Скрываем по умолчанию */
+  position: relative; /* Позиционируем относительно родителя */
+  background-color: #F0FFFF;
+  min-width: 160px;
+
+
+  z-index: 1; /* Гарантируем, что он будет поверх других элементов */
+}
+.sidebar-section:hover .dropdown-menu {
+  display: block;
+}
+.cats{
+  display: block;
+  background-color: #F0FFFF;
+  color: #004c5b;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.cats:hover  {
+  background-color: #F0FFFF;
+  color: #111;
+}
+#logo:hover{
+    background-color: #F0FFFF;
+}
+#logo-img{
+    height: 80px;
+}
+
+hr{
+    width:90%;
+    margin:2px 30px 30px;
+}

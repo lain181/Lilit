@@ -1,37 +1,49 @@
 {% load main_tags %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <link href="https://fonts.cdnfonts.com/css/reddit-sans?version=1.0" rel="stylesheet" type="text/css"/>
+    <link type="text/css" href="{% static 'main/css/styles.css' %}" rel="stylesheet"/>
 </head>
 <body>
-{% if user.is_authenticated %}
-<a href="{% url 'users:logout' %}">Logout</a>--<a href="{% url 'profile' request.user.pk %}">Profile</a>
-<p><a href="{%url 'create_post'%} ">Create post</a></p>
-{% else %}
-<a href="{% url 'users:login'%}?next={{request.path}}">Login</a>
- /
-<a href="{% url 'users:registrate'%}?next={{request.path}}">Sing in</a>
-{% endif %}
-
-{% get_menu as menu %}
-{% for i in menu %}
-    <p><a href="{% url i.url %}">{{i.name}}</a></p>
-{% endfor %}
-
-{% get_categories as cats %}
-<p>Categories</p>
-<ul>
-{% for i in cats %}
-    <li><a href="{{ i.get_absolute_url }}">{{i.category_name}}</a></li>
-
-{% endfor %}
-</ul>
+<div class="header">
+    <div id="go-main">
+    {% get_menu as menu %}
+    {% for i in menu %}
+        <a href="{% url i.url %}" id="logo"><img src="{% static 'main/images/logo.png' %}" alt="Описание изображения" style="border: none;" id="logo-img"></a>
+    {% endfor %}
+    </div>
+    <div id="user">
+        {% if user.is_authenticated %}
+            <a href="{%url 'create_post'%} ">Create post</a>
+            <a href="{% url 'users:logout' %}">Logout</a>
+            <a href="{% url 'profile' request.user.pk %}">Profile</a>
+        {% else %}
+            <a href="{% url 'users:login'%}?next={{request.path}}">Login</a>/<a href="{% url 'users:registrate'%}?next={{request.path}}">Sing in</a>
+        {% endif %}
+    </div>
+</div>
+<aside class="sidebar">
+    <div class="sidebar-section">
+    {% get_categories as cats %}
+        <button class="dropdown-btn">Categories</button>
+        <div class="dropdown-menu">
+            {% for el in cats %}
+            <a href="{{ el.get_absolute_url }}" class="cats">{{el.category_name}}</a>
+            {% endfor %}
+        </div>
+    </div>
+<div class="content" >
 <h1>{{title}}</h1>
+
 {% block content %}
 
 {% endblock %}
+</div>
+</aside>
 </body>
 </html>

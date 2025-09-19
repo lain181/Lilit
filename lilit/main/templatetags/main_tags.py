@@ -8,7 +8,7 @@ from main.models import Category
 register = template.Library()
 
 menu=[
-    {"name": "Main", "url":"main"},
+    {"name": "Main", "url":"main","img":'static/main/images/logo.png'},
     ]
 @register.simple_tag
 def get_menu():

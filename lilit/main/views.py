@@ -4,9 +4,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView
+from rest_framework.generics import ListAPIView
 
 from .forms import AddCommentForm
 from .models import (Post, Comment, Category)
+from .serializers import PostSerializer
 
 
 class HomePageListView(ListView):
@@ -41,6 +43,8 @@ class CreatePost(CreateView):
 class ProfileView(DetailView):
      model = User
      template_name = 'main/profile.html'
+
+
 class ShowPost(View):
      def get(self, request, slug):
           post = get_object_or_404(Post, slug=slug)
@@ -84,3 +88,8 @@ class ReplyView(CreateView):
           form.instance.reply=reply_com
           return super().form_valid(form)
 
+
+
+class PostAPIView(ListAPIView):
+     queryset = Post.objects.all()
+     serializer_class = PostSerializer
